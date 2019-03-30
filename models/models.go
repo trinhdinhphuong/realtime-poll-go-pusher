@@ -8,10 +8,10 @@ import (
 )
 
 var client = pusher.Client{
-	AppId:   "PUSHER_APP_ID",
-	Key:     "PUSHER_APP_KEY",
-	Secret:  "PUSHER_APP_SECRET",
-	Cluster: "PUSHER_APP_CLUSTER",
+	AppId:   "748437",
+	Key:     "f111cb59178d5f2294a1",
+	Secret:  "67bb89071bd4269f98f8",
+	Cluster: "ap1",
 	Secure:  true,
 }
 
