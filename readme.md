@@ -25,3 +25,22 @@ To get started with the project, make sure you have all the prequiisites above.
 * [Pusher](https://pusher.com) - build realtime applications easily.
 * [Vue.js](http://vuejs.org) - JavaScript framework
 * [Echo](https://echo.labstack.com/) - Go web framework.
+
+====================
+Trinh Dinh Phuong
+
+go get github.com/pusher/pusher-http-go
+
+
+"gopoll/handlers"
+sửa lại đúng đường dẫn là
+"realtime-poll-go-pusher/handlers"
+
+sửa lại đường dẫn import của file  trong thư mục handlers 
+"gopoll/models" 
+thành 
+"realtime-poll-go-pusher/models"
+
+https://pusher.com/
+PUSHER_APP_ID
+748437
