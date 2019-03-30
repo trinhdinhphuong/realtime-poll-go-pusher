@@ -1,6 +1,7 @@
 package handlers
 
 import (
+        "fmt"
 	"database/sql"
 	"realtime-poll-go-pusher/models"
 	"net/http"
@@ -12,12 +13,14 @@ import (
 type H map[string]interface{}
 
 func GetPolls(db *sql.DB) echo.HandlerFunc {
+        fmt.Printf("\nPrint: func GetPolls ")
 	return func(c echo.Context) error {
 		return c.JSON(http.StatusOK, models.GetPolls(db))
 	}
 }
 
 func UpdatePoll(db *sql.DB) echo.HandlerFunc {
+        fmt.Printf("\nPrint: func UpdatePoll %#v",db)
 	return func(c echo.Context) error {
 		var poll models.Poll
 

@@ -1,6 +1,8 @@
 package main
 
 import (
+//	"encoding/json"
+	"fmt"
 	"database/sql"
 	"realtime-poll-go-pusher/handlers"
 
@@ -24,6 +26,7 @@ func initDB(filepath string) *sql.DB {
 }
 
 func migrate(db *sql.DB) {
+	fmt.Printf("\nprint: func migrate ")
 	sql := `
         CREATE TABLE IF NOT EXISTS polls(
                 id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -35,18 +38,19 @@ func migrate(db *sql.DB) {
                 UNIQUE(name)
         );
 
-        INSERT OR IGNORE INTO polls(name, topic, src, upvotes, downvotes) VALUES('Angular','Awesome Angular', 'https://cdn.colorlib.com/wp/wp-content/uploads/sites/2/angular-logo.png', 1, 0);
+        INSERT OR IGNORE INTO polls(name, topic, src, upvotes, downvotes) VALUES('Angular','Awesome Angular', '', 1, 0);
 
-        INSERT OR IGNORE INTO polls(name, topic, src, upvotes, downvotes) VALUES('Vue', 'Voguish Vue','https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Vue.js_Logo.svg/400px-Vue.js_Logo.svg.png', 1, 0);
+        INSERT OR IGNORE INTO polls(name, topic, src, upvotes, downvotes) VALUES('Vue', 'Voguish Vue','', 1, 0);
 
-        INSERT OR IGNORE INTO polls(name, topic, src, upvotes, downvotes) VALUES('React','Remarkable React','https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png', 1, 0);
+        INSERT OR IGNORE INTO polls(name, topic, src, upvotes, downvotes) VALUES('React','Remarkable React','', 1, 0);
 
-        INSERT OR IGNORE INTO polls(name, topic, src, upvotes, downvotes) VALUES('Ember','Excellent Ember','https://cdn-images-1.medium.com/max/741/1*9oD6P0dEfPYp3Vkk2UTzCg.png', 1, 0);
+        INSERT OR IGNORE INTO polls(name, topic, src, upvotes, downvotes) VALUES('Ember','Excellent Ember','', 1, 0);
 
-        INSERT OR IGNORE INTO polls(name, topic, src, upvotes, downvotes) VALUES('Knockout','Knightly Knockout','https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_1489710848/knockout-js.png', 1, 0);
+        INSERT OR IGNORE INTO polls(name, topic, src, upvotes, downvotes) VALUES('Knockout','Knightly Knockout','', 1, 0);
    `
 	_, err := db.Exec(sql)
-
+	//fmt.Println(string(bytes))
+	//panic(err)
 	if err != nil {
 		panic(err)
 	}
@@ -61,11 +65,13 @@ func main() {
 
 	// Initialize the database
 	db := initDB("storage.db")
+	fmt.Printf("print: func main ")
 	migrate(db)
 
 	// Define the HTTP routes
 	e.File("/", "public/index.html")
 	e.GET("/polls", handlers.GetPolls(db))
+        fmt.Printf("print: db: %#v",db)
 	e.PUT("/update/:index", handlers.UpdatePoll(db))
 
 	// Start server

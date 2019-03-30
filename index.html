@@ -55,8 +55,8 @@ var app = new Vue({
     this.polls = response.data.items ? response.data.items : [] }).catch((e) => {
     this.failed('Unsuccesful') })
 
-    const pusher = new Pusher('23919cee3b1111731271', {
-    cluster: 'eu',
+    const pusher = new Pusher('f111cb59178d5f2294a1', {
+    cluster: 'ap1',
     encrypted: true
     });
 
