@@ -28,7 +28,8 @@ To get started with the project, make sure you have all the prequiisites above.
 
 ====================
 Trinh Dinh Phuong
-
+go get github.com/labstack/echo
+go get github.com/mattn/go-sqlite3
 go get github.com/pusher/pusher-http-go
 
 
